@@ -1,0 +1,123 @@
+NOTENEST AI — FIXED SHOWCASE VERSION
+
+IMPORTANT BEFORE YOU START
+This version fixes:
+1. duplicate note creation,
+2. the editor/attachment preview not clearing after Save,
+3. AI not reading PDFs, Word documents and images.
+
+----------------------------------------
+A. IF YOU WANT TO KEEP YOUR EXISTING DATA
+----------------------------------------
+
+Your notes are stored in MongoDB, so use the SAME MONGO_URI.
+
+Your uploaded files are stored physically inside the old project's:
+backend\uploads
+
+If you want old uploaded PDFs/images to keep working:
+1. Open your OLD project.
+2. Copy everything inside:
+   backend\uploads
+3. Paste those files into:
+   NoteNest_AI_Showcase_FIXED\backend\uploads
+
+Also copy your OLD backend\.env into the new backend folder.
+
+----------------------------------------
+B. BACKEND
+----------------------------------------
+
+Open PowerShell:
+
+cd C:\Users\Priya\NoteNest_AI_Showcase_FIXED\backend
+
+Run:
+
+npm.cmd install
+
+Then:
+
+npm.cmd run dev
+
+Expected:
+
+MongoDB connected successfully
+NoteNest AI backend running on http://localhost:5000
+
+IMPORTANT:
+The new npm install includes PDF/Word/OCR packages and may take longer than before.
+
+----------------------------------------
+C. FRONTEND
+----------------------------------------
+
+Open a SECOND PowerShell terminal:
+
+cd C:\Users\Priya\NoteNest_AI_Showcase_FIXED\frontend
+
+Run:
+
+npm.cmd install
+
+Then:
+
+npm.cmd run dev
+
+Open the Local URL Vite shows.
+
+----------------------------------------
+D. TEST THE THREE FIXES
+----------------------------------------
+
+TEST 1 — SAVE
+Create a note with one PDF.
+Click Save note ONCE.
+
+Expected:
+- button briefly says Saving...
+- only one note card is created
+- editor becomes empty
+- uploaded-file preview disappears from Create Note
+
+TEST 2 — PDF AI
+Select the saved PDF note for AI.
+Click Summary.
+
+Expected:
+- the PDF text is used in the result
+- not an empty "General" summary
+
+TEST 3 — IMAGE / DOCX
+Upload an image containing readable text or a Word file.
+Save it.
+Select it for AI.
+Click Key points or Simplify.
+
+Expected:
+- extracted/OCR text is used by the study assistant.
+
+----------------------------------------
+E. EXISTING DUPLICATE NOTES
+----------------------------------------
+
+The fix prevents NEW duplicates.
+If old duplicate note cards already exist in MongoDB, delete those duplicate cards manually once.
+
+----------------------------------------
+F. OPENAI KEY
+----------------------------------------
+
+Without OPENAI_API_KEY:
+- file text extraction still works
+- Local Demo Summary / Key Points / Simplify / Revision work from extracted text
+
+With OPENAI_API_KEY:
+- the same extracted file text is sent to the generative AI model.
+
+----------------------------------------
+OCR NOTE
+----------------------------------------
+
+Scanned PDFs and images use OCR.
+The first OCR operation can be slower than normal PDF text extraction.
