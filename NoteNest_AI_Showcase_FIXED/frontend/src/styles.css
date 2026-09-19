@@ -237,6 +237,12 @@ label {
   bottom: -150px;
   border-radius: 50%;
   border: 44px solid rgba(255,255,255,.08);
+
+  pointer-events: none;
+}
+.welcome-banner > * {
+  position: relative;
+  z-index: 1;
 }
 
 .welcome-banner h1 {
